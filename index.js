@@ -8,7 +8,7 @@ var timestamp = 0
 app.use(cors());
 app.use(bodyParser.json());
 
-const connectionUri = 'mysql://uunch59r7rwnctrn:WoOi8ntdSucc98XB63nj@bxhnkswhjrht8ix2vbrf-mysql.services.clever-cloud.com:3306/bxhnkswhjrht8ix2vbrf';
+const connectionUri = process.env.DATABASE_URL || 'mysql://uunch59r7rwnctrn:WoOi8ntdSucc98XB63nj@bxhnkswhjrht8ix2vbrf-mysql.services.clever-cloud.com:3306/bxhnkswhjrht8ix2vbrf';
 // Função para conectar-se ao banco de dados
 async function connect() {
     try {
@@ -220,7 +220,7 @@ app.get('/clientes/criar', async (req, res) => {
         // Insira um exemplo de cliente na tabela
         await connection.execute(`
             INSERT INTO TABLETK2 (cliente, cpf, email, code, donwload)
-            VALUES ('Exemplo Cliente', '12345678901', 'exemplo@email.com', '123ABC', 5)
+            VALUES ('Exemplo Cliente', '12345678901', 'exemplo@email.com', '123ABC', -5)
         `);
 
         // Encerre a conexão
